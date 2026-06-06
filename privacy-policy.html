@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d0f14;
+      --surface: #13161d;
+      --border: rgba(255,255,255,0.07);
+      --accent: #4f8ef7;
+      --accent-soft: rgba(79,142,247,0.12);
+      --text: #e8eaf0;
+      --text-muted: #7a7f91;
+      --text-dim: #4a4f5e;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+
+    /* Noise texture overlay */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Glowing orb background */
+    body::after {
+      content: '';
+      position: fixed;
+      top: -20vh; left: 50%;
+      transform: translateX(-50%);
+      width: 80vw; height: 60vh;
+      background: radial-gradient(ellipse, rgba(79,142,247,0.07) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 80px 32px 120px;
+    }
+
+    /* Header */
+    header {
+      margin-bottom: 64px;
+      animation: fadeUp 0.7s ease both;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-soft);
+      border: 1px solid rgba(79,142,247,0.2);
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+    }
+
+    .badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s ease infinite;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .meta {
+      font-size: 13px;
+      color: var(--text-muted);
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .meta span { display: flex; align-items: center; gap: 6px; }
+
+    /* Divider */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      opacity: 0.3;
+      margin: 48px 0;
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 48px;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    section:nth-child(2) { animation-delay: 0.1s; }
+    section:nth-child(3) { animation-delay: 0.15s; }
+    section:nth-child(4) { animation-delay: 0.2s; }
+    section:nth-child(5) { animation-delay: 0.25s; }
+    section:nth-child(6) { animation-delay: 0.3s; }
+    section:nth-child(7) { animation-delay: 0.35s; }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    h2 .num {
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--accent);
+      background: var(--accent-soft);
+      border: 1px solid rgba(79,142,247,0.2);
+      padding: 3px 9px;
+      border-radius: 4px;
+      letter-spacing: 0.06em;
+    }
+
+    p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 14px;
+    }
+
+    p:last-child { margin-bottom: 0; }
+
+    ul {
+      list-style: none;
+      margin: 14px 0;
+    }
+
+    ul li {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      padding: 8px 0 8px 24px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+
+    ul li:last-child { border-bottom: none; }
+
+    ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 13px;
+    }
+
+    /* Info card */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin: 24px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+    }
+
+    /* Contact block */
+    .contact {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+      margin-top: 24px;
+      text-align: center;
+    }
+
+    .contact p {
+      margin-bottom: 12px;
+      font-size: 0.9rem;
+    }
+
+    .contact a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      border-bottom: 1px solid rgba(79,142,247,0.3);
+      transition: border-color 0.2s;
+    }
+
+    .contact a:hover { border-color: var(--accent); }
+
+    /* Footer */
+    footer {
+      margin-top: 80px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      animation: fadeUp 0.6s ease 0.4s both;
+    }
+
+    footer p {
+      font-size: 12px;
+      color: var(--text-dim);
+      margin: 0;
+    }
+
+    /* Animations */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.3; }
+    }
+
+    @media (max-width: 600px) {
+      .wrapper { padding: 48px 20px 80px; }
+      .card { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+
+    <header>
+      <div class="badge">Privacy Policy</div>
+      <h1>How We Handle Your Data</h1>
+      <div class="meta">
+        <span>📅 Effective date: January 1, 2025</span>
+        <span>🔄 Last updated: June 6, 2025</span>
+      </div>
+    </header>
+
+    <div class="divider"></div>
+
+    <section>
+      <h2><span class="num">01</span> General</h2>
+      <p>This Privacy Policy describes how our application ("Application", "we", "us") collects, uses, and protects the information you provide when using our service through the Facebook / Meta platform.</p>
+      <p>By using the Application, you agree to the terms of this Policy. If you disagree with any part of it, please discontinue use of the Application.</p>
+    </section>
+
+    <section>
+      <h2><span class="num">02</span> Data We Collect</h2>
+      <div class="card">
+        <ul>
+          <li>Facebook public profile: name, profile picture, user ID</li>
+          <li>Email address (if permission is granted)</li>
+          <li>App usage data: actions, frequency, sessions</li>
+          <li>Technical information: device type, OS version, IP address</li>
+        </ul>
+      </div>
+      <p>We only request permissions that are strictly necessary for the Application to function correctly.</p>
+    </section>
+
+    <section>
+      <h2><span class="num">03</span> How We Use Your Data</h2>
+      <ul>
+        <li>Operating and improving Application functionality</li>
+        <li>Personalizing the user experience</li>
+        <li>Analyzing usage statistics (in aggregated form)</li>
+        <li>Ensuring security and preventing fraud</li>
+        <li>Communicating with users regarding support</li>
+      </ul>
+      <p>We <strong style="color:#fff">do not sell</strong> or transfer your personal data to third parties for commercial purposes.</p>
+    </section>
+
+    <section>
+      <h2><span class="num">04</span> Sharing Data with Third Parties</h2>
+      <p>Data may be shared only in the following cases:</p>
+      <ul>
+        <li>Analytics services (e.g. Google Analytics) — in anonymized form</li>
+        <li>Legal requirements or court orders</li>
+        <li>Protection of user rights and safety</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2><span class="num">05</span> Data Storage & Security</h2>
+      <p>We apply technical and organizational measures to protect your data from unauthorized access, alteration, or deletion. Data is stored on secured servers.</p>
+      <p>Data is retained until you delete your account or revoke permissions in your Facebook app settings.</p>
+    </section>
+
+    <section>
+      <h2><span class="num">06</span> Your Rights</h2>
+      <ul>
+        <li>Access the personal data we hold about you</li>
+        <li>Request correction or deletion of your data</li>
+        <li>Revoke permissions via Facebook app settings</li>
+        <li>Lodge a complaint with the relevant supervisory authority</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2><span class="num">07</span> Facebook Platform Compliance</h2>
+      <p>Our Application complies with the <a href="https://developers.facebook.com/policy/" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(79,142,247,0.3)">Meta Platform Policy for Developers</a>. We do not violate Facebook's Terms of Service and do not collect data in any manner prohibited by the platform.</p>
+    </section>
+
+    <section>
+      <h2><span class="num">08</span> Contact Information</h2>
+      <p>If you have any questions or requests regarding your personal data, please reach out to us:</p>
+      <div class="contact">
+        <p>For all privacy-related inquiries:</p>
+        <a href="mailto:privacy@yourapp.com">privacy@yourapp.com</a>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <footer>
+      <p>© 2025 YourApp. All rights reserved.</p>
+      <p>Privacy Policy · Terms of Use</p>
+    </footer>
+
+  </div>
+</body>
+</html>

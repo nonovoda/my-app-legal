@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Service</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f7f4ef;
+      --surface: #ffffff;
+      --border: rgba(0,0,0,0.08);
+      --border-strong: rgba(0,0,0,0.14);
+      --accent: #c0392b;
+      --accent-soft: rgba(192,57,43,0.07);
+      --text: #1a1814;
+      --text-muted: #5a5650;
+      --text-dim: #9a9590;
+      --ink: #1a1814;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.8;
+      min-height: 100vh;
+    }
+
+    /* Subtle paper texture */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Top rule */
+    .top-rule {
+      height: 4px;
+      background: var(--ink);
+      position: relative;
+      z-index: 10;
+    }
+
+    .top-rule::after {
+      content: '';
+      position: absolute;
+      top: 6px; left: 0; right: 0;
+      height: 1px;
+      background: var(--ink);
+    }
+
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 64px 32px 120px;
+    }
+
+    /* Header */
+    header {
+      margin-bottom: 56px;
+      animation: fadeIn 0.8s ease both;
+    }
+
+    .eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .eyebrow::before, .eyebrow::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border-strong);
+    }
+
+    .eyebrow::before { flex: 0 0 32px; }
+    .eyebrow::after  { flex: 1; }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 600;
+      line-height: 1.1;
+      color: var(--ink);
+      margin-bottom: 24px;
+      letter-spacing: -0.01em;
+    }
+
+    h1 em {
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .meta-row {
+      display: flex;
+      gap: 0;
+      border-top: 1px solid var(--border-strong);
+      border-bottom: 1px solid var(--border-strong);
+      padding: 12px 0;
+      flex-wrap: wrap;
+    }
+
+    .meta-item {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      padding-right: 24px;
+      margin-right: 24px;
+      border-right: 1px solid var(--border-strong);
+    }
+
+    .meta-item:last-child { border-right: none; padding-right: 0; margin-right: 0; }
+
+    .meta-item strong { color: var(--ink); font-weight: 500; }
+
+    /* Table of contents */
+    .toc {
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-left: 3px solid var(--accent);
+      padding: 28px 32px;
+      margin: 48px 0;
+      animation: fadeIn 0.7s ease 0.1s both;
+    }
+
+    .toc-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .toc ol {
+      list-style: none;
+      columns: 2;
+      gap: 8px;
+    }
+
+    .toc ol li {
+      font-size: 13px;
+      color: var(--text-muted);
+      padding: 3px 0;
+      counter-increment: toc-counter;
+      break-inside: avoid;
+    }
+
+    .toc ol li::before {
+      content: counter(toc-counter, decimal-leading-zero) ". ";
+      color: var(--accent);
+      font-weight: 500;
+      font-size: 11px;
+      margin-right: 4px;
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 52px;
+      animation: fadeIn 0.6s ease both;
+    }
+
+    section:nth-of-type(1)  { animation-delay: 0.05s; }
+    section:nth-of-type(2)  { animation-delay: 0.10s; }
+    section:nth-of-type(3)  { animation-delay: 0.15s; }
+    section:nth-of-type(4)  { animation-delay: 0.20s; }
+    section:nth-of-type(5)  { animation-delay: 0.25s; }
+    section:nth-of-type(6)  { animation-delay: 0.30s; }
+    section:nth-of-type(7)  { animation-delay: 0.35s; }
+    section:nth-of-type(8)  { animation-delay: 0.40s; }
+    section:nth-of-type(9)  { animation-delay: 0.45s; }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-strong);
+    }
+
+    .sec-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--accent);
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+
+    p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 14px;
+    }
+
+    p:last-child { margin-bottom: 0; }
+
+    p a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(192,57,43,0.3);
+      transition: border-color 0.2s;
+    }
+
+    p a:hover { border-color: var(--accent); }
+
+    ul {
+      list-style: none;
+      margin: 14px 0;
+    }
+
+    ul li {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      padding: 9px 0 9px 20px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+
+    ul li:last-child { border-bottom: none; }
+
+    ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 12px;
+    }
+
+    /* Highlight box */
+    .highlight {
+      background: var(--accent-soft);
+      border-left: 3px solid var(--accent);
+      padding: 20px 24px;
+      margin: 20px 0;
+    }
+
+    .highlight p {
+      font-size: 0.88rem;
+      margin: 0;
+      color: var(--text-muted);
+    }
+
+    .highlight strong { color: var(--ink); }
+
+    /* Contact */
+    .contact-block {
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      padding: 36px;
+      margin-top: 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .contact-block::before {
+      content: '§';
+      position: absolute;
+      top: -18px; left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      color: var(--accent);
+      background: var(--bg);
+      padding: 0 12px;
+    }
+
+    .contact-block p { font-size: 0.85rem; margin-bottom: 12px; }
+
+    .contact-block a {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 2px solid var(--accent);
+      transition: color 0.2s;
+    }
+
+    .contact-block a:hover { color: var(--accent); }
+
+    /* Footer */
+    footer {
+      margin-top: 80px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-strong);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: end;
+      animation: fadeIn 0.6s ease 0.5s both;
+    }
+
+    footer p {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin: 0;
+      letter-spacing: 0.03em;
+    }
+
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      .wrapper { padding: 48px 20px 80px; }
+      .toc ol  { columns: 1; }
+      footer   { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-rule"></div>
+
+  <div class="wrapper">
+
+    <header>
+      <div class="eyebrow">Legal · YourApp</div>
+      <h1>Terms of <em>Service</em></h1>
+      <div class="meta-row">
+        <div class="meta-item"><strong>Effective:</strong> January 1, 2025</div>
+        <div class="meta-item"><strong>Last revised:</strong> June 6, 2025</div>
+        <div class="meta-item"><strong>Platform:</strong> Facebook / Meta</div>
+      </div>
+    </header>
+
+    <div class="toc">
+      <div class="toc-title">Contents</div>
+      <ol style="counter-reset: toc-counter;">
+        <li>Acceptance of Terms</li>
+        <li>Description of Service</li>
+        <li>User Obligations</li>
+        <li>Prohibited Conduct</li>
+        <li>Intellectual Property</li>
+        <li>Disclaimers</li>
+        <li>Limitation of Liability</li>
+        <li>Modifications to Terms</li>
+        <li>Contact Us</li>
+      </ol>
+    </div>
+
+    <section>
+      <div class="section-header">
+        <span class="sec-num">01</span>
+        <h2>Acceptance of Terms</h2>
+      </div>
+      <p>By accessing or using YourApp ("Application", "Service", "we", "us") through the Facebook / Meta platform, you confirm that you have read, understood, and agree to be bound by these Terms of Service ("Terms").</p>
+      <p>If you do not agree to these Terms, please discontinue use of the Application immediately. Your continued use of the Service constitutes your ongoing acceptance of these Terms.</p>
+      <div class="highlight">
+        <p><strong>Age requirement:</strong> You must be at least 13 years old (or the minimum age required in your country) to use this Application. By using the Service, you represent that you meet this requirement.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-header">
+        <span class="sec-num">02</span>
+        <h2>Description of Service</h2>
+      </div>
+      <p>The Application provides the following functionality to users via the Facebook platform:</p>
+      <ul>
+        <li>Access to Application features using your Facebook account</li>
+        <li>Personalized content and recommendations</li>
+        <li>Interaction tools within the Facebook ecosystem</li>
+        <li>Additional features as described in the Application interface</li>
+      </ul>
+      <p>We reserve the right to modify, suspend, or discontinue any part of the Service at any time without prior notice.</p>
+    </section>
+
+    <section>
+      <div class="section-header">
+        <span class="sec-num">03</span>
+        <h2>User Obligations</h2>
+      </div>
+      <p>By using the Application, you agree to:</p>
+      <ul>
+        <li>Provide accurate and truthful information when required</li>
+        <li>Use the Service only for lawful purposes</li>
+        <li>Comply with all applicable local, national, and international laws</li>
+        <li>Respect the rights and dignity of other users</li>
+        <li>Not interfere with or disrupt the operation of the Service</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-header">
+        <span class="sec-num">04</span>
+        <h2>Prohibited Conduct</h2>
+      </div>
+      <p>You agree <strong>not</strong> to engage in any of the following:</p>
+      <ul>
+        <li>Posting or transmitting unlawful, harmful, or abusive content</li>
+        <li>Attempting to gain unauthorized access to any part of the Service</li>
+        <li>Using automated tools, bots, or scrapers without written permission</li>
+        <li>Impersonating any person or entity</li>
+        <li>Collecting user data without explicit consent</li>
+        <li>Violating Meta's Platform Terms or Community Standards</li>
+      </ul>
+      <p>Violation of these restrictions may result in immediate termination of your access to the Application.</p>
+    </section>
+
+    <section>
+      <div class="section-header">
+        <span class="sec-num">05</span>
+        <h2>Intellectual Property</h2>
+      </div>
+      <p>All content, trademarks, logos, and intellectual property associated with the Application are owned by or licensed to us. Nothing in these Terms grants you any right to use our brand assets without prior written consent.</p>
+      <p>Content you submit or share through the Application remains your property. By submitting content, you grant us a non-exclusive, royalty-free license to use it solely for the purpose of operating and improving the Service.</p>
+    </section>
+
+    <section>
+      <div class="section-header">
+        <span class="sec-num">06</span>
+        <h2>Disclaimers</h2>
+      </div>
+      <p>The Service is provided on an <strong>"as is"</strong> and <strong>"as available"</strong> basis without warranties of any kind, either express or implied. We do not warrant that the Service will be uninterrupted, error-free, or free of viruses or other harmful components.</p>
+      <div class="highlight">
+        <p>The Application operates on the Facebook platform and is subject to Meta's own Terms of Service. We are not responsible for changes to Facebook's platform that may affect the functionality of our Application.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-header">
+        <span class="sec-num">07</span>
+        <h2>Limitation of Liability</h2>
+      </div>
+      <p>To the maximum extent permitted by applicable law, we shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the Service.</p>
+      <p>Our total liability for any claim arising out of or relating to these Terms shall not exceed the amount you paid us, if any, in the twelve months preceding the claim.</p>
+    </section>
+
+    <section>
+      <div class="section-header">
+        <span class="sec-num">08</span>
+        <h2>Modifications to Terms</h2>
+      </div>
+      <p>We may update these Terms from time to time. When we do, we will revise the "Last revised" date at the top of this page. For significant changes, we will make reasonable efforts to notify you via the Application or through your registered contact information.</p>
+      <p>Your continued use of the Service after any modifications constitutes acceptance of the updated Terms.</p>
+    </section>
+
+    <section>
+      <div class="section-header">
+        <span class="sec-num">09</span>
+        <h2>Contact Us</h2>
+      </div>
+      <p>For questions, concerns, or requests regarding these Terms of Service, please contact us:</p>
+      <div class="contact-block">
+        <p>Legal & compliance inquiries</p>
+        <a href="mailto:legal@yourapp.com">legal@yourapp.com</a>
+      </div>
+    </section>
+
+    <footer>
+      <div>
+        <p>© 2025 YourApp. All rights reserved.</p>
+        <p style="margin-top:4px;">Terms of Service · <a href="privacy-policy.html" style="color:var(--text-dim);text-decoration:none;border-bottom:1px solid var(--border-strong);">Privacy Policy</a></p>
+      </div>
+      <div class="footer-brand">YourApp</div>
+    </footer>
+
+  </div>
+
+</body>
+</html>

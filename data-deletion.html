@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Deletion Request</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f7f4ef;
+      --surface: #ffffff;
+      --border: rgba(0,0,0,0.08);
+      --border-strong: rgba(0,0,0,0.14);
+      --accent: #c0392b;
+      --text: #1a1814;
+      --text-muted: #5a5650;
+      --text-dim: #9a9590;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+    }
+
+    .top-rule {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--text);
+      z-index: 10;
+    }
+    .top-rule::after {
+      content: '';
+      position: absolute;
+      top: 6px; left: 0; right: 0;
+      height: 1px;
+      background: var(--text);
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      max-width: 520px;
+      width: 100%;
+      padding: 52px 48px;
+      animation: fadeUp 0.7s ease both;
+      position: relative;
+    }
+
+    .icon {
+      width: 48px; height: 48px;
+      background: rgba(192,57,43,0.08);
+      border: 1px solid rgba(192,57,43,0.2);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 28px;
+      font-size: 20px;
+    }
+
+    .eyebrow {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+
+    h1 em { font-style: italic; font-weight: 400; }
+
+    .divider {
+      height: 1px;
+      background: var(--border-strong);
+      margin-bottom: 24px;
+    }
+
+    p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 14px;
+    }
+
+    p:last-of-type { margin-bottom: 0; }
+
+    .steps {
+      list-style: none;
+      margin: 20px 0 28px;
+      counter-reset: steps;
+    }
+
+    .steps li {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      padding: 10px 0 10px 36px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      counter-increment: steps;
+      line-height: 1.6;
+    }
+
+    .steps li:last-child { border-bottom: none; }
+
+    .steps li::before {
+      content: counter(steps);
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 22px; height: 22px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 500;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .email-btn {
+      display: block;
+      text-align: center;
+      margin-top: 28px;
+      padding: 16px 24px;
+      background: var(--text);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .email-btn:hover { background: var(--accent); }
+
+    .email-btn span {
+      display: block;
+      font-size: 11px;
+      font-weight: 300;
+      opacity: 0.7;
+      margin-top: 3px;
+      letter-spacing: 0.02em;
+    }
+
+    .note {
+      margin-top: 20px;
+      padding: 14px 18px;
+      background: rgba(192,57,43,0.06);
+      border-left: 3px solid var(--accent);
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    footer {
+      margin-top: 32px;
+      font-size: 11px;
+      color: var(--text-dim);
+      text-align: center;
+      animation: fadeUp 0.6s ease 0.2s both;
+    }
+
+    footer a {
+      color: var(--text-dim);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border-strong);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 560px) {
+      .card { padding: 36px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-rule"></div>
+
+  <div class="card">
+    <div class="icon">🗑️</div>
+    <div class="eyebrow">Data Deletion · YourApp</div>
+    <h1>Delete Your <em>Data</em></h1>
+    <div class="divider"></div>
+
+    <p>You have the right to request the deletion of all personal data we have collected about you. To do so, simply send us an email and we'll take care of the rest.</p>
+
+    <ul class="steps">
+      <li>Send an email to <strong>nonovoda1@gmail.com</strong> with the subject line <strong>"Data Deletion Request"</strong></li>
+      <li>Include your <strong>Facebook name or user ID</strong> so we can identify your account</li>
+      <li>We will process your request and confirm deletion within <strong>30 days</strong></li>
+    </ul>
+
+    <a class="email-btn" href="mailto:nonovoda1@gmail.com?subject=Data%20Deletion%20Request">
+      Send Deletion Request
+      <span>nonovoda1@gmail.com</span>
+    </a>
+
+    <div class="note">
+      Once deleted, your data cannot be recovered. You will also lose access to any content or settings associated with your account.
+    </div>
+  </div>
+
+  <footer>
+    © 2025 YourApp &nbsp;·&nbsp;
+    <a href="privacy-policy.html">Privacy Policy</a> &nbsp;·&nbsp;
+    <a href="terms-of-service.html">Terms of Service</a>
+  </footer>
+
+</body>
+</html>
